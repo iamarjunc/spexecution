@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+    <h1>FORM</h1>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	{% csrf_token %}
+    <button class="submit" id="button" onclick="handleClick()">Submit</button>
+    <script>
+        function handleClick() {	
+			console.log("hello"); // Log the input value to console
+            $.ajax({
+                url: '/storedapp/submit/',
+                type: 'POST',              
+                dataType: 'json',
+                success: function(response) {
+                    console.log("Received Data:", response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Failed to fetch data:", error);
+                }
+            });
+
+		}
+    </script>
+</body>
+</html>
